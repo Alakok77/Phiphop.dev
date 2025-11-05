@@ -42,28 +42,50 @@ export default function SkillSet(){
 
   const totalPages = Math.ceil(skills.length / itemsPerPage);
 
+  function next() {
+    setPage(p => (p >= totalPages - 1 ? 0 : p + 1));
+  }
+
+  function previous() {
+    setPage(p => (p <= 0 ? totalPages - 1 : p - 1));
+  }
+
   return (
     <>
-      <div className='flex flex-col items-center justify-center h-4/5'>
+      <div className='flex flex-col items-center justify-center h-4/5 justify-items-center'>
 
           {/* skill */}
-          <div className="grid grid-cols-2 gap-4 place-items-center">
+          <div className="grid grid-cols-2 gap-4 place-items-start min-h-[180px]">
             {currentSkills.map((s, i) => (
               <Skill key={i} logo={s.logo} name={s.name} />
             ))}
           </div>
 
           {/* ... */}
-          <div className="flex justify-center mt-6 gap-3">
+          <div className="flex justify-center mt-6 gap-3 items-center">
+            <div className="w-0 h-0
+              border-t-[10px] border-t-transparent
+              border-b-[10px] border-b-transparent
+              border-r-[20px] border-r-blue-900 mr-3"
+              onClick={previous}
+              ></div>
+
             {Array.from({ length: totalPages }).map((_, i) => (
               <button
-                key={i}
-                onClick={() => setPage(i)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  i === page ? "bg-cyan-500 scale-125" : "bg-cyan-200 hover:bg-cyan-400"
-                }`}
+              key={i}
+              onClick={() => setPage(i)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                i === page ? "bg-cyan-500 scale-125" : "bg-cyan-200 hover:bg-cyan-400"
+              }`}
               ></button>
             ))}
+
+            <div className="w-0 h-0
+              border-t-[10px] border-t-transparent
+              border-b-[10px] border-b-transparent
+              border-l-[20px] border-l-blue-900 ml-3"
+              onClick={next}
+              ></div>
           </div>
       </div>
     </>
