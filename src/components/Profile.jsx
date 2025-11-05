@@ -1,5 +1,5 @@
 import me from '../assets/me.jpg'
-import Timeline from './Timeline'
+import SkillSet from './SkillSet'
 
 export default function Profile(){
     return (
@@ -19,9 +19,9 @@ export default function Profile(){
                     </div>
                 </div>
                 {/* Education card */}
-                <div className="w-120 h-100 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] rounded-2xl flex justify-center p-2 flex-col items-center">
-                    <h1 className='font-extrabold text-cyan-800 text-2xl'>Education</h1>
-                    <Timeline/>
+                <div className="w-120 h-100 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] rounded-2xl flex p-2 flex-col items-center">
+                    <h1 className='font-extrabold text-cyan-800 text-2xl'>Skill</h1>
+                    <SkillSet/>
                 </div>
             </div>
         </>
