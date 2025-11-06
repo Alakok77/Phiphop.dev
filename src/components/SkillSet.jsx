@@ -14,6 +14,8 @@ import js from '../assets/logo/js.png'
 import sql from '../assets/logo/sql.jpg'
 import arduino from '../assets/logo/arduino.png'
 import esp from '../assets/logo/esp.png'
+import node from '../assets/logo/node.png'
+import react from '../assets/logo/react.png'
 
 export default function SkillSet(){
 
@@ -32,6 +34,8 @@ export default function SkillSet(){
     {logo:sql, name:"SQL"},
     {logo:arduino, name:"Arduino"},
     {logo:esp, name:"Espressif Systems"},
+    {logo:node, name:"Node JS"},
+    {logo:react, name:"React"}
   ] 
 
   const itemsPerPage = 4;

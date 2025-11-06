@@ -1,6 +1,17 @@
 import Project from "./project"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function ProjectSet(){
+
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:3000/projects")
+        .then(res => setProjects(res.data))
+        .catch(err => console.error(err));
+    }, []);
+
     return (
         <div className="flex justify-center mt-10 p-10">
             <div className="w-250 rounded-2xl shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-3">
@@ -8,10 +19,21 @@ export default function ProjectSet(){
                 
                 {/* Grid */}
                 <div className="grid grid-cols-3 m-5 gap-8">
-                    <Project />
-                    <Project />
-                    <Project />
-                    <Project />
+                    {
+                        projects.map((p) => (
+                            <Project 
+                                key={p._id}
+                                tumb={p.image}
+                                name={p.name}
+                                desc={p.description}
+                                time={new Date(p.end_date).toLocaleDateString("en-US", {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric",
+                                })}
+                            />
+                        ))
+                    }
                 </div>
             </div>
         </div>

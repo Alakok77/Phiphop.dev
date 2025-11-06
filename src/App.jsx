@@ -12,7 +12,7 @@ function App() {
       <Profile />
       <ProjectSet />
       <Contact />
-      <p class="text-center text-gray-500 text-sm mb-7">
+      <p className="text-center text-gray-500 text-sm mb-7">
         © 2025 Phiphop.dev
         <br />All rights reserved
       </p>
