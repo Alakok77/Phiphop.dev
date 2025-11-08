@@ -1,9 +1,10 @@
-export default function Project({ tumb, name, desc, time }) {
+export default function Project({ tumb, name, desc, time, onClick }) {
   return (
     <div className="w-70 h-70 rounded-lg shadow-[0_0_5px_2px_rgba(0,0,0,0.1)] 
                     flex flex-col justify-start
                     transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.15)]
-                    p-5 gap-3">
+                    p-5 gap-3"
+          onClick={onClick}>
         <div className='flex flex-col gap-y-0.5'>
             <h1 className='text-cyan-900 font-semibold text-xl'>{name}</h1>
             <p className='text-xs text-gray-600'>End date : {time}</p>

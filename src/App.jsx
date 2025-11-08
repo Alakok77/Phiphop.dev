@@ -1,18 +1,20 @@
-import { useState } from 'react'
 import './App.css'
+import { Routes, Route } from "react-router-dom"
 import NavBar from './components/NavBar'
-import Profile from './components/profile'
-import ProjectSet from './components/ProjectSet'
-import Contact from './components/Contact'
+import Home from './pages/Home'
+import ProjectPage from './pages/ProjectPage'
 
 function App() {
   return (
     <>
       <NavBar />
-      <Profile />
-      <ProjectSet />
-      <Contact />
-      <p className="text-center text-gray-500 text-sm mb-7">
+      
+      <Routes>
+        <Route path="/" element={<Home />} />      
+        <Route path="/Project" element={<ProjectPage />} />
+      </Routes>
+
+      <p className="text-center text-gray-500 text-sm mb-7 mt-7">
         © 2025 Phiphop.dev
         <br />All rights reserved
       </p>

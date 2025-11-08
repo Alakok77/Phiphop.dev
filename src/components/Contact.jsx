@@ -7,7 +7,7 @@ import github from '../assets/logo/github.png'
 export default function Contact(){
     const openlink = (link) => {
         window.open(link, "_blank");
-        };
+    };
 
     return (
         <div className="h-80 mt-10 flex justify-center">

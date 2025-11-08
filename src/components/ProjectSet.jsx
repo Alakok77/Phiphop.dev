@@ -1,16 +1,22 @@
 import Project from "./project"
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function ProjectSet(){
 
     const [projects, setProjects] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:3000/projects")
+        axios.get("http://localhost:3000/api/projects")
         .then(res => setProjects(res.data))
         .catch(err => console.error(err));
     }, []);
+
+    const handleClick = (projectName) => {
+        navigate("/Project", { state: { projectName } });
+    };
 
     return (
         <div className="flex justify-center mt-10 p-10">
@@ -22,6 +28,7 @@ export default function ProjectSet(){
                     {
                         projects.map((p) => (
                             <Project 
+                                onClick={() => handleClick(p.name)}
                                 key={p._id}
                                 tumb={p.image}
                                 name={p.name}
