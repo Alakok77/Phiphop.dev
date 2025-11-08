@@ -33,16 +33,17 @@ export default function ProjectPage() {
         desc={detail.highlight}
         url={detail.doc}
         project={detail.name}
+        image={detail.image}
       />
 
-      <Card_Tool />
+      <Card_Tool used={detail.used} />
 
       <Card_A 
         Name={"Outcomes"} 
         desc={detail.outcomes}
       />
 
-      <div className="flex gap-5 mt-5">
+      <div className="flex gap-5">
         <Card_B Name={"Advantages"} color={"green"} desc={detail.advantage} />
         <Card_B Name={"Limitations"} color={"red"}  desc={detail.limitation}/>
       </div>

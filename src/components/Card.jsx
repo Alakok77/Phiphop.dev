@@ -1,13 +1,10 @@
-import test from '../assets/project/wordice.png'
-import test2 from '../assets/project/formulaHub.png'
-import test3 from '../assets/project/Offlearn.png'
 import Skill from './Skill'
 import react from '../assets/logo/react.png'
 import pdf from '../assets/logo/pdf.png'
 import { useState } from 'react'
 
-export function Card_Main({Name, desc, url, project}){
-    const [selectedImage, setSelectedImage] = useState(test);
+export function Card_Main({Name, desc, url, project, image}){
+    const [selectedImage, setSelectedImage] = useState(image[0]);
 
     const openlink = (link) => {
         window.open(link, "_blank");
@@ -18,9 +15,9 @@ export function Card_Main({Name, desc, url, project}){
                 <div className="w-250 h-130 rounded-2xl p-5 flex flex-col items-center gap-y-1">
                     <img src={selectedImage} className='w-4/5 h-4/5 rounded-2xl shadow-[0_0_10px_5px_rgba(0,0,0,0.16)]' />
                     <div className='flex w-4/5 h-20 gap-3 items-center justify-center'>
-                        <img src={test} onClick={() => setSelectedImage(test)} className='w-20 h-10 rounded-lg shadow-[0_0_10px_5px_rgba(0,0,0,0.16)] object-cover hover:scale-105 transition-transform duration-300' />
-                        <img src={test2} onClick={() => setSelectedImage(test2)} className='w-20 h-10 rounded-lg shadow-[0_0_10px_5px_rgba(0,0,0,0.16)] object-cover hover:scale-105 transition-transform duration-300' />
-                        <img src={test3} onClick={() => setSelectedImage(test3)} className='w-20 h-10 rounded-lg shadow-[0_0_10px_5px_rgba(0,0,0,0.16)] object-cover hover:scale-105 transition-transform duration-300' />
+                        {image.map((item, i) => (
+                            <img key={i} src={item} onClick={() => setSelectedImage(item)} className='w-20 h-10 rounded-lg shadow-[0_0_10px_5px_rgba(0,0,0,0.06)] object-cover hover:scale-105 transition-transform duration-300' />
+                        ))}
                     </div>
                 </div>
                 <h1 className="text-cyan-800 font-bold text-xl">{Name}</h1>
@@ -41,20 +38,14 @@ export function Card_Main({Name, desc, url, project}){
     )
 }
 
-export function Card_Tool(){
+export function Card_Tool({used}){
     return (
         <div className="rounded-2xl w-250 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-5 mb-8">
             <h1 className="text-cyan-800 font-bold text-xl mb-3">Tools and Technologies</h1>
             <div className='flex flex-wrap justify-center gap-5'>
-                <Skill logo={react} name={"React"}/>
-                <Skill logo={react} name={"React"}/>
-                <Skill logo={react} name={"React"}/>
-                <Skill logo={react} name={"React"}/>
-                <Skill logo={react} name={"React"}/>
-                <Skill logo={react} name={"React"}/>
-                <Skill logo={react} name={"React"}/>
-                <Skill logo={react} name={"React"}/>
-                <Skill logo={react} name={"React"}/>
+                {used.map((item, i) => (
+                    <Skill key={i} logo={item.logo} name={item.tool}/>
+                ))}
             </div>
         </div>
     )
