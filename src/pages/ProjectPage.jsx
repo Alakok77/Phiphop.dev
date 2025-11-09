@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Card_A, Card_B, Card_Main, Card_Tool } from "../components/Card";
+import { Card_A, Card_B, Card_Main, Card_Tool, Card_Team } from "../components/Card";
 
 export default function ProjectPage() {
   const { state } = useLocation();
@@ -28,12 +28,14 @@ export default function ProjectPage() {
     <div className="flex flex-col items-center">
       <h1 className="text-cyan-900 text-3xl font-bold mb-8">{detail.name}</h1>
 
+
       <Card_Main 
         Name={"Highlights / Features"} 
         desc={detail.highlight}
         url={detail.doc}
         project={detail.name}
         image={detail.image}
+        git={detail.github}
       />
 
       <Card_Tool used={detail.used} />
@@ -47,6 +49,9 @@ export default function ProjectPage() {
         <Card_B Name={"Advantages"} color={"green"} desc={detail.advantage} />
         <Card_B Name={"Limitations"} color={"red"}  desc={detail.limitation}/>
       </div>
+
+      <Card_Team desc={detail.teammate} />
+
     </div>
   );
 }

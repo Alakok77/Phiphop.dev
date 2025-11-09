@@ -15,35 +15,35 @@ export default function Contact(){
                 <h1 className="font-bold text-cyan-800 text-2xl ml-10 mr-20">Contact : </h1>
                 <div className='flex gap-5 justify-center'>
                     <img className="w-15 h-15 rounded-lg shadow-[0_0_5px_2px_rgba(0,0,0,0.1)] 
-                                    flex flex-col justify-center
+                                    flex flex-col justify-center cursor-pointer
                                     transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.15)]
                                     "
                         onClick={() => {openlink("mailto:top.p1234558@gmail.com")}}
                         src={gmail}>
                     </img>
                     <img className="w-15 h-15 rounded-2xl shadow-[0_0_5px_2px_rgba(0,0,0,0.1)] 
-                                        flex flex-col justify-center
+                                        flex flex-col justify-center cursor-pointer
                                         transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.15)]
                                         "
                         onClick={() => {openlink("https://line.me/ti/p/~0825508806")}}
                         src={line}>
                     </img>
                     <img className="w-15 h-15 rounded-4xl shadow-[0_0_5px_2px_rgba(0,0,0,0.1)] 
-                                        flex flex-col justify-center
+                                        flex flex-col justify-center cursor-pointer
                                         transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.15)]
                                         "
                         onClick={() => {openlink("https://www.instagram.com/to.exphp/")}}
                         src={ig}>
                     </img>
                     <img className="w-15 h-15 rounded-lg shadow-[0_0_5px_2px_rgba(0,0,0,0.1)] 
-                                        flex flex-col justify-center
+                                        flex flex-col justify-center cursor-pointer
                                         transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.15)]
                                         "
                         onClick={() => {openlink("https://web.facebook.com/phiphop.thong.aun?locale=th_TH")}}
                         src={facebook}>
                     </img>
                     <img className="w-15 h-15 rounded-full shadow-[0_0_5px_2px_rgba(0,0,0,0.1)] 
-                                        flex flex-col justify-center
+                                        flex flex-col justify-center cursor-pointer
                                         transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.15)]
                                         "
                         onClick={() => {openlink("https://github.com/Alakok77")}}
