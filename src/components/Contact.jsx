@@ -3,14 +3,17 @@ import ig from '../assets/logo/ig.png'
 import line from '../assets/logo/line.png'
 import gmail from '../assets/logo/gmail.png'
 import github from '../assets/logo/github.png'
+import { useScroll } from '../context/ScrollContext'
 
 export default function Contact(){
+    const {contactRef} = useScroll();
+
     const openlink = (link) => {
         window.open(link, "_blank");
     };
 
     return (
-        <div className="h-80 mt-10 flex justify-center">
+        <div className="h-80 mt-10 flex justify-center" ref={contactRef}>
             <div className="shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] w-250 h-70 rounded-2xl p-5 flex flex-col gap-5 justify-center items-center">
                 <h1 className="font-bold text-cyan-800 text-2xl ml-10 mr-20">Contact : </h1>
                 <div className='flex gap-5 justify-center'>
@@ -18,7 +21,7 @@ export default function Contact(){
                                     flex flex-col justify-center cursor-pointer
                                     transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.15)]
                                     "
-                        onClick={() => {openlink("mailto:top.p1234558@gmail.com")}}
+                        onClick={() => {openlink("https://mail.google.com/mail/?view=cm&fs=1&to=top.p1234558@gmail.com")}}
                         src={gmail}>
                     </img>
                     <img className="w-15 h-15 rounded-2xl shadow-[0_0_5px_2px_rgba(0,0,0,0.1)] 
@@ -50,8 +53,8 @@ export default function Contact(){
                         src={github}>
                     </img>
                 </div>
-                <h1 className="font-bold text-cyan-800 text-2xl ml-10 mr-20">Location : <span className='font-medium text-cyan-700 text-xl'>Base in Bangkok, Thailand</span></h1>        
-                <h1 className="font-bold text-cyan-800 text-2xl ml-10 mr-20">Available hours : <span className='font-medium text-cyan-700 text-xl'>9 AM – 6 PM</span></h1>        
+                <h1 className="font-bold text-cyan-800 text-lg ml-10 mr-20">Location : <span className='font-medium text-cyan-700 text-base'>Base in Bangkok, Thailand</span></h1>        
+                <h1 className="font-bold text-cyan-800 text-lg ml-10 mr-20">Available hours : <span className='font-medium text-cyan-700 text-base'>9 AM – 6 PM</span></h1>        
             </div>
         </div>
     )

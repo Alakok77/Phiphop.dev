@@ -25,7 +25,7 @@ export default function ProjectPage() {
   if (!detail) return <p className="text-center mt-10">กำลังโหลดข้อมูล...</p>;
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mt-30">
       <h1 className="text-cyan-900 text-3xl font-bold mb-8">{detail.name}</h1>
 
 

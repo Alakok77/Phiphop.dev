@@ -3,10 +3,11 @@ import { Routes, Route } from "react-router-dom"
 import NavBar from './components/NavBar'
 import Home from './pages/Home'
 import ProjectPage from './pages/ProjectPage'
+import { ScrollProvider } from './context/ScrollContext'
 
 function App() {
   return (
-    <>
+    <ScrollProvider>
       <NavBar />
       
       <Routes>
@@ -18,7 +19,7 @@ function App() {
         © 2025 Phiphop.dev
         <br />All rights reserved
       </p>
-    </>
+    </ScrollProvider>
   )
 }
 

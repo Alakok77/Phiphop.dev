@@ -1,10 +1,14 @@
 import me from '../assets/me.jpg'
 import SkillSet from './SkillSet'
+import { useScroll } from '../context/ScrollContext'
 
 export default function Profile(){
+
+    const {aboutRef} = useScroll();
+
     return (
         <>
-            <div className="flex gap-10 content-center justify-center">
+            <div className="flex gap-10 content-center justify-center mt-30" ref={aboutRef}>
                 {/* Profile card */}
                 <div className="w-120 h-100 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] rounded-2xl flex justify-center p-2">
                     <div className="content-center flex flex-col gap-y-5 items-center">
