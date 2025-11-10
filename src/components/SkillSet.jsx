@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Skill from './Skill'
 import dart from '../assets/logo/dart.png'
 import c from '../assets/logo/c.png'
@@ -38,8 +38,21 @@ export default function SkillSet(){
     {logo:react, name:"React"}
   ] 
 
-  const itemsPerPage = 4;
   const [page, setPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(2);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    const handleResize = () => {
+      setItemsPerPage(mediaQuery.matches ? 4 : 2);
+    };
+
+    handleResize();
+    mediaQuery.addEventListener("change", handleResize);
+
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
 
   const startIndex = page * itemsPerPage;
   const currentSkills = skills.slice(startIndex, startIndex + itemsPerPage);
@@ -59,7 +72,8 @@ export default function SkillSet(){
       <div className='flex flex-col items-center justify-center h-4/5 justify-items-center'>
 
           {/* skill */}
-          <div className="grid grid-cols-2 gap-4 place-items-start min-h-[180px]">
+          <div className="grid grid-cols-1 gap-4 place-items-start min-h-[180px]
+                          md:grid-cols-2">
             {currentSkills.map((s, i) => (
               <Skill key={i} logo={s.logo} name={s.name} />
             ))}

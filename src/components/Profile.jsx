@@ -8,9 +8,12 @@ export default function Profile(){
 
     return (
         <>
-            <div className="flex gap-10 content-center justify-center mt-30" ref={aboutRef}>
+            <div className="flex flex-col md:flex-row gap-10 content-center justify-center mt-30
+                            items-center" 
+                            ref={aboutRef}>
                 {/* Profile card */}
-                <div className="w-120 h-100 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] rounded-2xl flex justify-center p-2">
+                <div className="w-4/5 h-100 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] rounded-2xl flex justify-center p-2
+                                md:w-120">
                     <div className="content-center flex flex-col gap-y-5 items-center">
                         <h1 className='font-extrabold text-cyan-800 text-2xl'>My Profile</h1>
                         <img src={me} alt="" className='rounded-full w-50 h-50 object-cover' />
@@ -23,7 +26,8 @@ export default function Profile(){
                     </div>
                 </div>
                 {/* Education card */}
-                <div className="w-120 h-100 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] rounded-2xl flex p-2 flex-col items-center">
+                <div className="w-4/5 h-100 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] rounded-2xl flex p-2 flex-col items-center
+                                md:w-120">
                     <h1 className='font-extrabold text-cyan-800 text-2xl'>Skill</h1>
                     <SkillSet/>
                 </div>
