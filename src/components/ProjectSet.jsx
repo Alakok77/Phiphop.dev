@@ -1,14 +1,17 @@
 import Project from "./project"
 import { useNavigate } from "react-router-dom";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useScroll } from "../context/ScrollContext";
 
 export default function ProjectSet(){
 
     const [projects, setProjects] = useState([]);
+    const [page, setPage] = useState(0);
+    const [itemsPerPage, setItemsPerPage] = useState(2);
     const navigate = useNavigate();
     const {projectRef} = useScroll();
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/projects")
@@ -16,9 +19,29 @@ export default function ProjectSet(){
         .catch(err => console.error(err));
     }, []);
 
+    useEffect(() => {
+
+        const handleResize = () => {
+            setItemsPerPage(mediaQuery.matches ? 6 : 2);
+        };
+
+        handleResize();
+        mediaQuery.addEventListener("change", handleResize);
+
+        return () => mediaQuery.removeEventListener("change", handleResize);
+    }, []);
+
+
     const handleClick = (projectName) => {
         navigate("/Project", { state: { projectName } });
     };
+
+    const totalPages = Math.ceil(projects.length / itemsPerPage);
+    const startIndex = page * itemsPerPage;
+    const currentProjects = projects.slice(startIndex, startIndex + itemsPerPage);
+
+    const next = () => setPage((p) => (p >= totalPages - 1 ? 0 : p + 1));
+    const previous = () => setPage((p) => (p <= 0 ? totalPages - 1 : p - 1));
 
     return (
         <div className="flex justify-center mt-10 p-10">
@@ -26,24 +49,52 @@ export default function ProjectSet(){
                 <h1 className="font-extrabold text-cyan-800 text-2xl ml-10" ref={projectRef}>Project</h1>
                 
                 {/* Grid */}
-                <div className="grid grid-cols-3 m-5 gap-8">
-                    {
-                        projects.map((p) => (
-                            <Project 
-                                onClick={() => handleClick(p.name)}
-                                key={p._id}
-                                tumb={p.image}
-                                name={p.name}
-                                desc={p.description}
-                                time={new Date(p.end_date).toLocaleDateString("en-US", {
-                                    day: "2-digit",
-                                    month: "short",
-                                    year: "numeric",
-                                })}
-                            />
-                        ))
-                    }
+                <div className="grid grid-cols-1 m-5 gap-8 md:grid-cols-3 place-items-center">
+                    {currentProjects.map((p) => (
+                        <Project
+                        key={p._id}
+                        onClick={() => handleClick(p.name)}
+                        tumb={p.image}
+                        name={p.name}
+                        desc={p.description}
+                        time={new Date(p.end_date).toLocaleDateString("en-US", {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                        })}
+                        />
+                    ))}
                 </div>
+
+                <div className="flex justify-center items-center gap-3 mt-5">
+                    {/* Previous */}
+                    <div
+                    className="w-0 h-0 border-t-10 border-t-transparent border-b-10 border-b-transparent
+                                border-r-20 border-r-blue-900 cursor-pointer"
+                    onClick={previous}
+                    ></div>
+
+                    {/* Page indicators */}
+                    {mediaQuery.matches ? Array.from({ length: totalPages }).map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => setPage(i)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        i === page
+                            ? "bg-cyan-500 scale-125"
+                            : "bg-cyan-200 hover:bg-cyan-400"
+                        }`}
+                    ></button>
+                    )) :<p></p>}
+
+                    {/* Next */}
+                    <div
+                    className="w-0 h-0 border-t-10 border-t-transparent border-b-10 border-b-transparent
+                                border-l-20 border-l-blue-900 cursor-pointer"
+                    onClick={next}
+                    ></div>
+                </div>
+
             </div>
         </div>
     )

@@ -40,9 +40,9 @@ export default function SkillSet(){
 
   const [page, setPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(2);
+  const mediaQuery = window.matchMedia("(min-width: 768px)");
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
 
     const handleResize = () => {
       setItemsPerPage(mediaQuery.matches ? 4 : 2);
@@ -88,7 +88,8 @@ export default function SkillSet(){
               onClick={previous}
               ></div>
 
-            {Array.from({ length: totalPages }).map((_, i) => (
+            
+            {mediaQuery.matches ? Array.from({ length: totalPages }).map((_, i) => (
               <button
               key={i}
               onClick={() => setPage(i)}
@@ -96,7 +97,7 @@ export default function SkillSet(){
                 i === page ? "bg-cyan-500 scale-125" : "bg-cyan-200 hover:bg-cyan-400"
               }`}
               ></button>
-            ))}
+            )) : <p></p>}
 
             <div className="w-0 h-0
               border-t-[10px] border-t-transparent
