@@ -45,7 +45,7 @@ export default function ProjectPage() {
         desc={detail.outcomes}
       />
 
-      <div className="flex gap-5">
+      <div className="lg:flex gap-5">
         <Card_B Name={"Advantages"} color={"green"} desc={detail.advantage} />
         <Card_B Name={"Limitations"} color={"red"}  desc={detail.limitation}/>
       </div>

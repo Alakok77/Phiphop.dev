@@ -14,27 +14,25 @@ export function Card_Main({Name, desc, url, project, image, git}){
     src.includes("youtube.com") || src.includes("youtu.be");
 
     return(
-            <div className="rounded-2xl w-250 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-5 mb-8">
+            <div className="rounded-2xl lg:w-250 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-3 mb-8 mx-5">
 
-                <div className="w-250 h-130 rounded-2xl p-5 flex flex-col items-center gap-y-1">
+                <div className="lg:w-250 h-130 rounded-2xl gap-y-1 flex flex-col items-center">
                     {
                         isYouTube(selectedImage) ? (
                             <iframe 
-                                    width="560" 
-                                    height="315" 
                                     src={selectedImage}
                                     title="YouTube video player" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen
-                                    className='w-4/5 h-4/5 rounded-2xl shadow-[0_0_10px_5px_rgba(0,0,0,0.16)]'></iframe>
+                                    className='w-full h-70 md:h-100 lg:w-4/5 lg:h-4/5 rounded-2xl shadow-[0_0_10px_5px_rgba(0,0,0,0.16)]'></iframe>
                         ) : (
                             <img src={selectedImage} 
-                            className='w-4/5 h-4/5 rounded-2xl shadow-[0_0_10px_5px_rgba(0,0,0,0.16)]' />
+                            className='lg:w-4/5 lg:h-4/5 rounded-2xl shadow-[0_0_10px_5px_rgba(0,0,0,0.16)]' />
                         )}
 
-                    <div className='flex w-4/5 h-20 gap-3 items-center justify-center'>
+                    <div className='flex w-4/5 h-20 gap-3 items-center justify-center flex-wrap mt-4'>
                         {image.map((item, i) => (
                             <div
                                 key={i}
@@ -65,7 +63,7 @@ export function Card_Main({Name, desc, url, project, image, git}){
 
 
                 <h1 className="text-cyan-800 font-bold text-xl">{Name}</h1>
-                <p className="indent-8 mt-3 text-justify">{desc}</p>
+                <p className="indent-8 mt-3 lg:text-justify p-3">{desc}</p>
                 <div className='flex items-center justify-center gap-5 mt-5'>
                     <div className='h-10 rounded-lg shadow-[0_0_5px_2px_rgba(0,0,0,0.08)] 
                                     transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.08)]
@@ -100,7 +98,7 @@ export function Card_Tool({used}){
     };
 
     return (
-        <div className="rounded-2xl w-250 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-5 mb-8 cursor-pointer">
+        <div className="w-[calc(100%-1.5rem)] rounded-2xl lg:w-250 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-5 mb-8 cursor-pointer">
             <h1 className="text-cyan-800 font-bold text-xl mb-3">Tools and Technologies</h1>
             <div className='flex flex-wrap justify-center gap-5'>
                 {used.map((item, i) => (
@@ -113,9 +111,9 @@ export function Card_Tool({used}){
 
 export function Card_A({Name, desc}){
     return(
-        <div className="rounded-2xl w-250 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-5 mb-8">
+        <div className="rounded-2xl lg:w-250 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-5 mb-8 m-3">
             <h1 className="text-cyan-800 font-bold text-xl">{Name}</h1>
-            <p className="indent-8 mt-3 text-justify">{desc}</p>
+            <p className="indent-8 mt-3 lg:text-justify">{desc}</p>
         </div>
     )
 }
@@ -129,9 +127,9 @@ export function Card_B({Name, color, desc}){
       : "text-gray-600"
 
     return(
-        <div className="rounded-2xl w-120 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-5 mb-8">
+        <div className="rounded-2xl lg:w-120 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-5 mb-8 mx-3">
             <h1 className={`${bgColor} font-bold text-xl`}>{Name}</h1>
-            <ul className="list-disc list-inside mt-3 text-justify text-gray-700 space-y-1">
+            <ul className="list-disc list-inside mt-3 lg:text-justify text-gray-700 space-y-1">
                 {desc.map((item, i) => (
                 <li key={i}>{item}</li>
                 ))}
@@ -142,10 +140,10 @@ export function Card_B({Name, color, desc}){
 
 export function Card_Team({desc}){
     return(
-        <div className="rounded-2xl w-250 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-5 mb-8">
+        <div className="rounded-2xl w-[calc(100%-1.5rem)] lg:w-250 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] p-5 mb-8 mx-3">
             <h1 className="text-cyan-800 font-bold text-xl">Teammate</h1>
             <div className='flex justify-center'>
-                <ul className='grid grid-cols-2 justify-center mt-5 w-fit gap-3 gap-x-15'>
+                <ul className='md:grid grid-cols-2 justify-center mt-5 w-fit gap-3 gap-x-15'>
                     {desc.map((item, i) => (
                         <li key={i}>{item}</li>
                     ))}
