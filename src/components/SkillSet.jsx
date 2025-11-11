@@ -40,7 +40,7 @@ export default function SkillSet(){
 
   const [page, setPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(2);
-  const mediaQuery = window.matchMedia("(min-width: 768px)");
+  const mediaQuery = window.matchMedia("(min-width: 1024px)");
 
   useEffect(() => {
 
@@ -73,7 +73,7 @@ export default function SkillSet(){
 
           {/* skill */}
           <div className="grid grid-cols-1 gap-4 place-items-start min-h-[180px]
-                          md:grid-cols-2">
+                          lg:grid-cols-2">
             {currentSkills.map((s, i) => (
               <Skill key={i} logo={s.logo} name={s.name} />
             ))}
@@ -82,14 +82,14 @@ export default function SkillSet(){
           {/* ... */}
           <div className="flex justify-center mt-6 gap-3 items-center">
             <div className="w-0 h-0
-              border-t-[10px] border-t-transparent
-              border-b-[10px] border-b-transparent
-              border-r-[20px] border-r-blue-900 mr-3"
+              border-t-10 border-t-transparent
+              border-b-10 border-b-transparent
+              border-r-20 border-r-blue-900 mr-3"
               onClick={previous}
               ></div>
 
             
-            {mediaQuery.matches ? Array.from({ length: totalPages }).map((_, i) => (
+            {mediaQuery.matches && Array.from({ length: totalPages }).map((_, i) => (
               <button
               key={i}
               onClick={() => setPage(i)}
@@ -97,12 +97,12 @@ export default function SkillSet(){
                 i === page ? "bg-cyan-500 scale-125" : "bg-cyan-200 hover:bg-cyan-400"
               }`}
               ></button>
-            )) : <p></p>}
+            ))}
 
             <div className="w-0 h-0
-              border-t-[10px] border-t-transparent
-              border-b-[10px] border-b-transparent
-              border-l-[20px] border-l-blue-900 ml-3"
+              border-t-10 border-t-transparent
+              border-b-10 border-b-transparent
+              border-l-20 border-l-blue-900 ml-3"
               onClick={next}
               ></div>
           </div>

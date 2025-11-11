@@ -9,7 +9,7 @@ export default function Profile(){
     return (
         <>
             <div className="flex flex-col md:flex-row gap-10 content-center justify-center mt-30
-                            items-center" 
+                            items-center md:p-10" 
                             ref={aboutRef}>
                 {/* Profile card */}
                 <div className="w-4/5 h-100 shadow-[0_0_10px_5px_rgba(0,0,0,0.1)] rounded-2xl flex justify-center p-2

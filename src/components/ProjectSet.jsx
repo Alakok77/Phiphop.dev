@@ -11,7 +11,8 @@ export default function ProjectSet(){
     const [itemsPerPage, setItemsPerPage] = useState(2);
     const navigate = useNavigate();
     const {projectRef} = useScroll();
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const [isMd, setIsMd] = useState(window.innerWidth >= 768);
+    const [isLg, setIsLg] = useState(window.innerWidth >= 1024);
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/projects")
@@ -20,15 +21,28 @@ export default function ProjectSet(){
     }, []);
 
     useEffect(() => {
+        const md = window.matchMedia("(min-width: 768px)");
+        const lg = window.matchMedia("(min-width: 1024px)");
 
         const handleResize = () => {
-            setItemsPerPage(mediaQuery.matches ? 6 : 2);
+        const mdMatch = md.matches;
+        const lgMatch = lg.matches;
+        setIsMd(mdMatch);
+        setIsLg(lgMatch);
+
+        if (lgMatch) setItemsPerPage(6);
+        else if (mdMatch) setItemsPerPage(4);
+        else setItemsPerPage(2);
         };
 
         handleResize();
-        mediaQuery.addEventListener("change", handleResize);
+        md.addEventListener("change", handleResize);
+        lg.addEventListener("change", handleResize);
 
-        return () => mediaQuery.removeEventListener("change", handleResize);
+        return () => {
+        md.removeEventListener("change", handleResize);
+        lg.removeEventListener("change", handleResize);
+        };
     }, []);
 
 
@@ -49,7 +63,8 @@ export default function ProjectSet(){
                 <h1 className="font-extrabold text-cyan-800 text-2xl ml-10" ref={projectRef}>Project</h1>
                 
                 {/* Grid */}
-                <div className="grid grid-cols-1 m-5 gap-8 md:grid-cols-3 place-items-center">
+                <div className="grid grid-cols-1 m-5 gap-8 md:grid-cols-2 lg:grid-cols-3
+                                justify-center items-start auto-rows-auto w-fit mx-auto">
                     {currentProjects.map((p) => (
                         <Project
                         key={p._id}
@@ -75,7 +90,7 @@ export default function ProjectSet(){
                     ></div>
 
                     {/* Page indicators */}
-                    {mediaQuery.matches ? Array.from({ length: totalPages }).map((_, i) => (
+                    {isMd && Array.from({ length: totalPages }).map((_, i) => (
                     <button
                         key={i}
                         onClick={() => setPage(i)}
@@ -85,7 +100,7 @@ export default function ProjectSet(){
                             : "bg-cyan-200 hover:bg-cyan-400"
                         }`}
                     ></button>
-                    )) :<p></p>}
+                    ))}
 
                     {/* Next */}
                     <div
