@@ -15,7 +15,7 @@ export default function ProjectSet(){
     const [isLg, setIsLg] = useState(window.innerWidth >= 1024);
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/projects")
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/projects`)
         .then(res => setProjects(res.data))
         .catch(err => console.error(err));
     }, []);

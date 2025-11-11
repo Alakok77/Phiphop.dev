@@ -12,7 +12,7 @@ export default function ProjectPage() {
 
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/projectDetails/${encodeURIComponent(state.projectName)}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/projectDetails/${encodeURIComponent(state.projectName)}`);
         setDetail(res.data);
       } catch (err) {
         console.error("Error fetching detail:", err);
